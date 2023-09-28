@@ -27,5 +27,6 @@ public class HelloApplication extends Application {
         }
         else if (args[0].equals("1"))
             launch();
+
     }
 }
