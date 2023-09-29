@@ -3,7 +3,6 @@ package com.example.wordscramble;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,7 +16,7 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 
-public class HelloController {
+public class WordScramblerController {
     public Label labelTime;
     public Label wordsTentative;
     public ListView<String> listTentatives;
@@ -48,6 +47,7 @@ public class HelloController {
         attemptsList = FXCollections.observableArrayList();
         listTentatives.setItems(attemptsList);
         resetTimer();
+
         if (actionEvent.getSource() == buttonStart)
         {
             listDifficulty.opacityProperty().set(1.0);
@@ -81,7 +81,7 @@ public class HelloController {
        if (session.checkAnswer(userInputForm.getCharacters().toString()))
        {
            stopTimer();
-           informationText.setText("YOU WON !!!");
+           informationText.setText("GOOD JOB YOU HAVE WIN IN " + labelTime.getText() + " MINUTES");
        }
        else {
            informationText.setText("Wrong ! Try again.");
@@ -91,7 +91,7 @@ public class HelloController {
     private void startTimer() {
         if (timer == null) {
             timer = new Timeline(new KeyFrame(Duration.seconds(1), e -> updateTimer()));
-            timer.setCycleCount(Timeline.INDEFINITE); // Exécutez indéfiniment
+            timer.setCycleCount(Timeline.INDEFINITE);
         }
         timer.play();
     }

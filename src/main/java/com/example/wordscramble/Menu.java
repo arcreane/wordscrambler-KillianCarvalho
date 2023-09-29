@@ -11,9 +11,9 @@ public class Menu {
         }
         System.out.println(menu.toString());
 
-        int returnedValue = HelloApplication.m_scanInput.nextInt();
+        int returnedValue = WordScramblerApplication.m_scanInput.nextInt();
 
-        HelloApplication.m_scanInput.nextLine();
+        WordScramblerApplication.m_scanInput.nextLine();
         return Difficulties.valueOf(returnedValue);
     }
 }
