@@ -3,10 +3,14 @@ package com.example.wordscramble;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
@@ -16,6 +20,8 @@ import java.io.IOException;
 public class HelloController {
     public Label labelTime;
     public Label wordsTentative;
+    public ListView<String> listTentatives;
+    private ObservableList<String> attemptsList;
     private Timeline timer;
     private int m_iSeconds = 0;
     private int m_iMinutes = 0;
@@ -39,6 +45,8 @@ public class HelloController {
 
     public void startGame(ActionEvent actionEvent) throws IOException {
         session = new GameManager();
+        attemptsList = FXCollections.observableArrayList();
+        listTentatives.setItems(attemptsList);
         resetTimer();
         if (actionEvent.getSource() == buttonStart)
         {
@@ -67,7 +75,9 @@ public class HelloController {
     }
 
     public void tryAnswer(ActionEvent actionEvent) {
-        wordsTentative.setText(userInputForm.getCharacters().toString());
+        String newAttempt = userInputForm.getCharacters().toString();
+        attemptsList.add(newAttempt);
+
        if (session.checkAnswer(userInputForm.getCharacters().toString()))
        {
            stopTimer();

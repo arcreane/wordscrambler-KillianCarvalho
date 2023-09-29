@@ -20,6 +20,7 @@ public class HelloApplication extends Application {
     }
 
     public static void main(String[] args) throws IOException {
+//        TODO change to doesn't use the args but a menu to know if the user want to play in console or with the interface
         if (args[0].equals("0"))
         {
             ConsoleManager console = new ConsoleManager();
